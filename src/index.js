@@ -1,17 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// CSS for greeting div
+const greetDiv = {
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	height: '400px',
+	width: '100%',
+};
+
+// Calculation of time
+let currentTime = new Date().getHours();
+let greet = '';
+let styleName = {};
+// console.log(currentTime);
+
+// Create dynamic greeting
+if (currentTime >= 1 && currentTime < 12) {
+	greet = 'Good Morning';
+	const morningStyle = {
+		color: 'yellow',
+	};
+	styleName = morningStyle;
+} else if (currentTime >= 12 && currentTime < 18) {
+	greet = 'Good Afternoon';
+	const afternoonStyle = {
+		color: 'white',
+	};
+	styleName = afternoonStyle;
+} else {
+	greet = 'Good Night';
+	const nightStyle = {
+		color: 'green',
+	};
+	styleName = nightStyle;
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<>
+		<div style={greetDiv}>
+			<h1 className='text'>
+				Hello Sir, <span style={styleName}>{greet}</span>
+			</h1>
+		</div>
+	</>,
+	document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
